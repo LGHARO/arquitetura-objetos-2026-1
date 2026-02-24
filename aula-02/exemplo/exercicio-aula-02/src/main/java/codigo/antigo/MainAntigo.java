@@ -1,12 +1,11 @@
-package org.example;
+package codigo.antigo;
 
-package campeonato;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.*;
 
-public class Campeonato {
+public class MainAntigo {
 
     public static void main(String[] args) {
 
