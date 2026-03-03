@@ -10,13 +10,10 @@
 - 🔸 `cpf : String`
 - 🔸 `ra : String`
 - 🔸 `email : String`
-- 🔸 `status : StatusAluno`
+- 🔸 `status : String (ATIVO, TRANCADO, FORMADO)`
 
 ### ⚙️ Métodos (Sugestão)
-- 🔹 `matricular(disciplina : Disciplina) : Matricula`
-- 🔹 `trancar() : void`
-- 🔹 `ativar() : void`
-- 🔹 `formar() : void`
+- 🔹 `mudarStatus(status : String) : String`
 - 🔹 `calcularMediaGeral() : double`
 
 ---
@@ -46,13 +43,12 @@
 - 🔸 `nota : double`
 - 🔸 `frequencia : double`
 - 🔸 `dataMatricula : LocalDate`
-- 🔸 `situacao : SituacaoMatricula`
+- 🔸 `situacao : String (CURSANDO, APROVADO, REPROVADO, TRANCADO)`
 
 ### ⚙️ Métodos (Sugestão)
 - 🔹 `registrarNota(nota : double) : void`
 - 🔹 `registrarFrequencia(frequencia : double) : void`
-- 🔹 `verificarAprovacao() : void`
-- 🔹 `trancar() : void`
+- 🔹 `mudarSituacao(status : String) : String`
 
 ---
 
@@ -77,6 +73,7 @@
 ### 📌 Atributos
 - 🔸 `nome : String`
 - 🔸 `dataNascimento : LocalDate`
+- 🔸 `dataContratacao : LocalDate`
 - 🔸 `cpf : String`
 - 🔸 `salario : double`
 - 🔸 `email : String`
@@ -85,7 +82,6 @@
 ### ⚙️ Métodos (Sugestão)
 - 🔹 `adicionarDisciplina(disciplina : Disciplina) : void`
 - 🔹 `removerDisciplina(codigo : String) : void`
-- 🔹 `calcularSalarioAnual() : double`
 
 ---
 
@@ -94,14 +90,11 @@
 ### 📌 Atributos
 - 🔸 `nome : String`
 - 🔸 `dataNascimento : LocalDate`
+- 🔸 `dataContratacao : LocalDate`
 - 🔸 `cpf : String`
 - 🔸 `salario : double`
 - 🔸 `email : String`
 - 🔸 `curso : Curso`
-
-### ⚙️ Métodos (Sugestão)
-- 🔹 `definirCurso(curso : Curso) : void`
-- 🔹 `calcularSalarioAnual() : double`
 
 ---
 
