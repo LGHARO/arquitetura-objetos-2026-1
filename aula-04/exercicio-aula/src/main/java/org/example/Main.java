@@ -9,12 +9,15 @@ public class Main {
 
     static void main() {
 
-        HashMap<String, Paciente> pacientes = new HashMap<>();
-        HashMap<String, Consulta> consultas = new HashMap<>();
+        PacienteService pacienteService = new PacienteService();
+        ConsultaService consultaService = new ConsultaService();
+        MedicoService medicoService = new MedicoService();
+
 
         Scanner scanner = new Scanner(System.in);
+        String opcao = "";
 
-        while (true) {
+        while (!opcao.equals("7")) {
 
             System.out.println(
                     """
@@ -23,9 +26,12 @@ public class Main {
                             2 - Listar Pacientes
                             3 - Cadastrar Consulta
                             4 - Listar Consultas
+                            5 - Cadastrar Medico
+                            6 - Listar Medicos
+                            7 - Sair
                     """
             );
-            String opcao = scanner.next();
+            opcao = scanner.next();
 
             if (opcao.equals("1")) {
                 System.out.println("Digite o nome");
@@ -37,43 +43,46 @@ public class Main {
                 System.out.println("Digite a idade");
                 int idade = scanner.nextInt();
 
-                if (nome == null || cpf == null || idade < 0) {
-                    System.out.println("Dados inválidos");
-                }
-
-                Paciente paciente = new Paciente(nome, cpf, idade);
-                pacientes.put(paciente.getCpf(), paciente);
+                pacienteService.cadastrarPaciente(nome, cpf, idade, null);
 
             }
 
             if (opcao.equals("2")) {
-                for (Paciente paciente : pacientes.values()) {
-                    paciente.imprime();
-                }
+                pacienteService.listarPacientes();
             }
 
             if (opcao.equals("3")) {
 
                 System.out.println("Digite o cpf do paciente");
-                String cpf = scanner.next();
+                String cpfPaciente = scanner.next();
+                Paciente paciente = pacienteService.buscarPaciente(cpfPaciente);
 
-                Paciente paciente = pacientes.get(cpf);
-                if (paciente != null) {
-                    Consulta consulta = new Consulta();
-                    consulta.setPaciente(paciente);
-                    consulta.setData(LocalDateTime.now().plusDays(5));
-                    consulta.setId(UUID.randomUUID().toString());
-                    consultas.put(consulta.getId(), consulta);
-                    System.out.println("Consulta cadastrada com sucesso");
-                }
+                System.out.println("Digite o cpf do medico");
+                String cpfMedico = scanner.next();
+                Medico medico = medicoService.buscarMedico(cpfMedico);
+
+                consultaService.cadastrarConsulta(paciente, medico);
+
 
             }
 
             if (opcao.equals("4")) {
-                for (Consulta consulta : consultas.values()) {
-                    consulta.imprime();
-                }
+                consultaService.listaConsultas();
             }
+
+            if (opcao.equals("5")) {
+                System.out.println("Digite o nome");
+                String nome = scanner.next();
+
+                System.out.println("Digite o cpf");
+                String cpf = scanner.next();
+                medicoService.cadastrarMedico(nome, cpf);
+            }
+
+            if (opcao.equals("6")) {
+                medicoService.listarMedicos();
+            }
+
 
 
         }
